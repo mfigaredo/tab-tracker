@@ -11,14 +11,20 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/status', (req, res) => {
-    res.send({
-        message: 'hello world!',
-    })
+	res.send({
+		message: 'hello world!',
+	})
+})
+
+app.post('/register', (req, res) => {
+	res.send({
+		message: `Hello ${req.body.email}! Your user was registered! Have fun!`
+	})
 })
 
 const port = process.env.PORT || 8081
 app.listen(port, () => {
-    console.log(`Server started on port ${port}`)
+	console.log(`Server started on port ${port}`)
 })
 
 
