@@ -1,25 +1,21 @@
 <template>
   <v-layout>
     <v-flex xs6 offset-xs3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Login</v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <v-text-field type="email" label="Email" name="email" v-model="email" />
-          <br/>
-          <v-text-field type="password" label="Password" name="password" v-model="password"/>
-          <br/>
-          <div class="error" v-html="error"></div>
-          <v-btn class="cyan" dark @click="login">Login</v-btn>
-        </div>
-      </div>
+      <panel title="Login">
+        <v-text-field type="email" label="Email" name="email" v-model="email" />
+        <br/>
+        <v-text-field type="password" label="Password" name="password" v-model="password"/>
+        <br/>
+        <div class="error" v-html="error"></div>
+        <v-btn class="cyan" dark @click="login">Login</v-btn>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -35,16 +31,23 @@ export default {
           email: this.email,
           password: this.password
         })
+        // console.log(this.$store)
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
+        // console.log(error)
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>
 
 <style scoped>
 .error {
-  color:red;
+  /* color:red; */
 }
 </style>

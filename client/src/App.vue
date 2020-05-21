@@ -30,4 +30,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.danger-alert {
+  color: red;
+  margin: 15px 20px;
+}
 </style>
