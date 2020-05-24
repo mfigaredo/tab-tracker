@@ -7,7 +7,7 @@
           <br/>
           <v-text-field type="password" label="Password" name="password" v-model="password" autocomplete="new-password"/>
           <br/>
-          <div class="error" v-html="error"></div>
+          <div class="danger-alert" v-html="error"></div>
           <v-btn class="cyan" dark @click="register">Register</v-btn>
         </form>
       </panel>
@@ -17,7 +17,6 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -42,14 +41,18 @@ export default {
         // console.log(response.data)
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'songs'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
+  // ,
+  // components: {
+  //   Panel
+  // }
   // mounted() {
   //   setTimeout( () => {
   //     this.email ='hello world!'
@@ -59,7 +62,5 @@ export default {
 </script>
 
 <style scoped>
-.error {
-  /* color:red; */
-}
+
 </style>

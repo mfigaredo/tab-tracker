@@ -1,24 +1,26 @@
 <template>
   <v-toolbar fixed dark class="cyan">
     <v-toolbar-title class="mr-4">
-      <router-link to="/">TabTracker</router-link>
-      <!-- <v-btn flat dark @click="navigateTo({name: 'HelloWorld'})">
+      <router-link class="home"
+        tag="a"
+        :to="{name: 'songs'}">
         TabTracker
-      </v-btn> -->
+      </router-link>
     </v-toolbar-title>
     <v-toolbar-items>
-      <v-btn flat dark @click="navigateTo({name: 'songs'})">
+      <v-btn dark flat
+        :to="{name: 'songs'}">
         Browse
       </v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
         <!-- Signup -->
-      <v-btn flat dark @click="navigateTo({name: 'login'})" v-if="!$store.state.isUserLoggedIn">
+      <v-btn flat dark :to="{name: 'login'}" v-if="!$store.state.isUserLoggedIn">
           Login
       </v-btn>
         <!-- Signup -->
-      <v-btn flat dark @click="navigateTo({name: 'register'})" v-if="!$store.state.isUserLoggedIn">
+      <v-btn flat dark :to="{name: 'register'}" v-if="!$store.state.isUserLoggedIn">
         <!-- <router-link to="register"> -->
           Sign Up
         <!-- </router-link> -->
@@ -36,14 +38,11 @@
 <script>
 export default {
   methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    },
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push({
-        name: 'root'
+        name: 'songs'
       })
     }
   }
