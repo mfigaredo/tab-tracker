@@ -21,7 +21,7 @@ import SongsSearchPanel from './SongsSearchPanel'
 import SongsBookmarks from './SongsBookmarks'
 import RecentlyViewedSongs from './RecentlyViewedSongs'
 // import SongsService from '@/services/SongsService'
-import { mapState } from 'vuex' 
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -35,7 +35,7 @@ export default {
       'isUserLoggedIn',
       'user'
     ])
-  },
+  }
   // data () {
   //   return {
   //     songs: null
